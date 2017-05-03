@@ -1,0 +1,90 @@
+<md-sidenav-layout [class.m2app-dark]="isDarkTheme">
+  <md-sidenav #sidenav mode="over" class="app-sidenav">
+    SideNav
+  </md-sidenav>
+
+
+  <md-toolbar [color]="'primary'">
+    <button class="app-icon-button" (click)="sidenav.toggle()">
+      <i class="material-icons app-toolbar-menu">menu</i>
+    </button>
+
+    <span md-tooltip="Angular Material2 Example App">Angular Material2 Example App</span>
+
+    <span class="app-toolbar-filler"></span>
+    <button md-raised-button (click)="isDarkTheme = !isDarkTheme">TOGGLE DARK THEME</button>
+  </md-toolbar>
+  <md-grid-list [cols]="12" [rowHeight]="'100px'">
+    <md-grid-tile [colspan]="6" [rowspan]="2" [style.backgroundColor]="'lightblue'">
+      One
+    </md-grid-tile>
+    <md-grid-tile [colspan]="6" [rowspan]="1" [style.backgroundColor]="'lightgreen'">
+      Two
+    </md-grid-tile>
+    <md-grid-tile [colspan]="6" [rowspan]="1" [style.backgroundColor]="'lightpink'">
+      Three
+    </md-grid-tile>
+  </md-grid-list>
+  <md-tab-group>
+    <md-tab [label]="'One'">
+      <h1>One</h1>
+    </md-tab>
+    <md-tab [label]="'Two'">
+      <h1>Two</h1>
+    </md-tab>
+  </md-tab-group>
+  <md-grid-list [cols]="4" [rowHeight]="'200px'">
+    <md-grid-tile [colspan]="1"
+                  routerLinkActive
+                  [routerLinkActiveOptions]="{extra:true}"
+                  style="background-color:lightyellow;color: #000;">
+      <nav md-tab-nav-bar style="flex-direction: column;">
+        <a md-tab-link
+           [routerLink]="'/tab-1'">
+          One
+        </a>
+        <a md-tab-link
+           [routerLink]="'/tab-2'">
+          Two
+        </a>
+        <a md-tab-link
+           [routerLink]="'/tab-3'">
+          Three
+        </a>
+      </nav>
+    </md-grid-tile>
+    <md-grid-tile [colspan]="3" style="background-color: aquamarine;">
+      <router-outlet></router-outlet>
+    </md-grid-tile>
+  </md-grid-list>
+
+  <md-sidenav-layout>
+    <md-sidenav>
+      SideNav-1
+    </md-sidenav>
+
+  </md-sidenav-layout>
+
+  <md-select [placeholder]="'Select One'" [(ngModel)]="selectedValue">
+    <md-option value="1">
+      1
+    </md-option>
+    <md-option value="2">
+      2
+    </md-option>
+    <md-option value="3">
+      3
+    </md-option>
+  </md-select>
+  <span style="color: #fff;">
+        {{selectedValue}}
+    </span>
+  <input type="text" [(ngModel)]="name" placeholder="">
+  <span style="color: aqua">{{name}}</span>
+  <button md-button [mdMenuTriggerFor]="menu">menu</button>
+  <md-menu #menu>
+    <button md-menu-item>Item1</button>
+    <button md-menu-item>Item2</button>
+  </md-menu>
+  <app-course-list></app-course-list>
+</md-sidenav-layout>

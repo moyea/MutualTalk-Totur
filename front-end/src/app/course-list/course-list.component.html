@@ -1,0 +1,7 @@
+<ul>
+  <li *ngFor="let course of courseList"
+      (click)="course._clicked=!course._clicked"
+      [ngClass]="{'xixi':course._clicked}">
+    {{course.name}}
+  </li>
+</ul>

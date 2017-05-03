@@ -16,14 +16,16 @@ function initialize() {
     let shouldQuit = makeSingleInstance();
     if (shouldQuit) return app.quit();
 
-    loadDemos();
+    loadMainProcess();
 
     function createWindow() {
         let windowOptions = {
-            width: 1080,
-            minWidth: 680,
-            height: 840,
-            title: app.getName()
+            width: 800,
+            height: 600,
+            title: app.getName(),
+            center: true,//窗口显示在屏幕中央
+            backgroundColor: '#c2185b',
+            // titleBarStyle:'hidden-inset'
         };
 
         if (process.platform === 'linux') {
@@ -73,18 +75,18 @@ function initialize() {
 function makeSingleInstance() {
     if (process.mas) return false;
 
-    return app.makeSingleInstance(function () {
+    return app.makeSingleInstance(() => {
         if (mainWindow) {
-            if (mainWindow.isMinimized()) mainWindow.restore();
+            mainWindow.isMinimized() && mainWindow.restore();
             mainWindow.focus()
         }
     })
 }
 
-// Require each JS file in the main-process dir
-function loadDemos() {
+//加载main-process目录下的文件
+function loadMainProcess() {
     let files = glob.sync(path.join(__dirname, 'main-process/**/*.js'));
-    files.forEach((file) => {
+    files.forEach(file => {
         require(file);
     });
     autoUpdater.updateMenu()
